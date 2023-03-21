@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    container: rtm516/winpe:latest
 
     steps:
       - uses: actions/checkout@v3
