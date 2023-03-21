@@ -24,7 +24,7 @@ jobs:
           .\adkwinpesetup.exe /quiet /norestart /ceip off /features OptionId.WindowsPreinstallationEnvironment
           
       - name: Setup the ENV
-        run: cmd /c "C:\Program^ Files^ ^(x86^)\Windows^ Kits\10\Assessment^ and^ Deployment^ Kit\Deployment^ Tools\DandISetEnv.bat && cmd /c reg add ^"HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment^" /t REG_EXPAND_SZ /v Path /d ^"%PATH%;%NewPath%^" /f"
+        run: cmd /c "C:\Program^ Files^ ^(x86^)\Windows^ Kits\10\Assessment^ and^ Deployment^ Kit\Deployment^ Tools\DandISetEnv.bat && cmd /c reg add `"HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment`" /t REG_EXPAND_SZ /v Path /d `"%PATH%`;%NewPath%`" /f"
 
       - name: Create the WinPE directory
         run: copype amd64 C:\WinPE_amd64
