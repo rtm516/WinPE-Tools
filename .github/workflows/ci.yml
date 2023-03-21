@@ -25,7 +25,8 @@ jobs:
       
       - name: Test
         run: |
-          tree "C:\Program Files (x86)\Windows Kits\"
+          dir "C:\Program Files (x86)\Windows Kits\"
+          dir "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\"
         
       - name: Setup the ENV
         run: cmd /c "C:\Program^ Files^ ^(x86^)\Windows^ Kits\10\Assessment^ and^ Deployment^ Kit\Deployment^ Tools\DandISetEnv.bat && cmd /c reg add `"HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment`" /t REG_EXPAND_SZ /v Path /d `"%PATH%`;%NewPath%`" /f"
