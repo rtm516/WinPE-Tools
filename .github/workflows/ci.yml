@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    container: rtm516/winpe:latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create the WinPE directory
+        run: copype amd64 C:\WinPE_amd64
+        
+      - name: Create the WinPE directory
+        run: MakeWinPEMedia /ISO C:\WinPE_amd64 C:\WinPE_amd64\WinPE_amd64.iso
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: WinPE_amd64.iso
+          path: C:\WinPE_amd64\WinPE_amd64.iso
