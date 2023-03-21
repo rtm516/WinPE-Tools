@@ -16,6 +16,7 @@ jobs:
       - name: Setup ADK
         run: |
           Invoke-WebRequest -O adksetup.exe https://download.microsoft.com/download/6/7/4/674ec7db-7c89-4f2b-8363-689055c2b430/adk/adksetup.exe
+          dir
           adksetup.exe /quiet /norestart /ceip off /features OptionId.DeploymentTools
       
       - name: Setup WinPE Addons
