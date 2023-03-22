@@ -26,9 +26,8 @@ jobs:
       - name: Test
         run: |
           dir $env:TEMP/ADK/
-          type $env:TEMP/ADK/*
+          #type $env:TEMP/ADK/*
           dir "C:\Program Files (x86)\Windows Kits\"
-          dir "C:\Program Files (x86)\Windows Kits\8.1\Assessment and Deployment Kit\Deployment Tools\"
           dir "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\"
         
       - name: Setup the ENV
