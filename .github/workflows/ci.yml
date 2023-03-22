@@ -16,17 +16,16 @@ jobs:
       - name: Setup ADK
         run: |
           Invoke-WebRequest -O adksetup.exe https://download.microsoft.com/download/6/7/4/674ec7db-7c89-4f2b-8363-689055c2b430/adk/adksetup.exe
-          .\adksetup.exe /quiet /norestart /ceip off /l .\adksetup.log /features OptionId.DeploymentTools
-          type .\adksetup.log
+          .\adksetup.exe /quiet /norestart /ceip off /features OptionId.DeploymentTools
       
       - name: Setup WinPE Addons
         run: |
           Invoke-WebRequest -O adkwinpesetup.exe https://download.microsoft.com/download/5/2/5/525dcde0-c7b8-487a-894d-0952775a78c7/adkwinpeaddons/adkwinpesetup.exe
-          .\adkwinpesetup.exe /quiet /norestart /ceip off /l .\adkwinpesetup.log /features OptionId.WindowsPreinstallationEnvironment
-          type .\adkwinpesetup.log
+          .\adkwinpesetup.exe /quiet /norestart /ceip off /features OptionId.WindowsPreinstallationEnvironment
       
       - name: Test
         run: |
+          dir %TEMP%/ADK/
           dir "C:\Program Files (x86)\Windows Kits\"
           dir "C:\Program Files (x86)\Windows Kits\8.1\Assessment and Deployment Kit\Deployment Tools\"
           dir "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\"
