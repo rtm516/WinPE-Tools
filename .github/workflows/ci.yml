@@ -16,12 +16,12 @@ jobs:
       - name: Setup ADK
         run: |
           Invoke-WebRequest -O adksetup.exe https://download.microsoft.com/download/6/7/4/674ec7db-7c89-4f2b-8363-689055c2b430/adk/adksetup.exe
-          .\adksetup.exe /quiet /norestart /ceip off /features OptionId.DeploymentTools
+          Start-Process -Wait .\adksetup.exe -ArgumentList "/quiet /norestart /ceip off /features OptionId.DeploymentTools"
       
       - name: Setup WinPE Addons
         run: |
           Invoke-WebRequest -O adkwinpesetup.exe https://download.microsoft.com/download/5/2/5/525dcde0-c7b8-487a-894d-0952775a78c7/adkwinpeaddons/adkwinpesetup.exe
-          .\adkwinpesetup.exe /quiet /norestart /ceip off /features OptionId.WindowsPreinstallationEnvironment
+          Start-Process -Wait .\adkwinpesetup.exe -ArgumentList "/quiet /norestart /ceip off /features OptionId.WindowsPreinstallationEnvironment"
       
       - name: Test
         run: |
