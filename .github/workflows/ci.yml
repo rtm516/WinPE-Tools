@@ -33,7 +33,7 @@ jobs:
         run: Dism /Mount-Image /ImageFile:"C:\WinPE_amd64\media\sources\boot.wim" /index:1 /MountDir:"C:\WinPE_amd64\mount"
 
       - name: Copy in the modifications
-        run: Copy-Item -Path .\mount -Destination C:\WinPE_amd64\mount -Recurse
+        run: Copy-Item -Path $env:GITHUB_WORKSPACE\mount -Destination C:\WinPE_amd64\mount -Recurse -Verbose
 
       - name: Unmount the WinPE boot image
         run: Dism /Unmount-Image /MountDir:"C:\WinPE_amd64\mount" /commit
