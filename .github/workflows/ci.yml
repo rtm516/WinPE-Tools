@@ -36,8 +36,8 @@ jobs:
         run: |
           ForEach ($package in Get-Content '.\packages.list') {
             if ($package.StartsWith('#') -or ($package.Trim() -eq '')) { continue }
-            Write-Host 'Adding package $package'
-            Dism /Add-Package /Image:'C:\WinPE_amd64\mount' /PackagePath:'C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\$package'
+            Write-Host "Adding package $package"
+            Dism /Add-Package /Image:"C:\WinPE_amd64\mount" /PackagePath:"C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\$package"
           }
 
       - name: Copy in the modifications
