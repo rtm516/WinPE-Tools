@@ -34,6 +34,7 @@ jobs:
 
       - name: Add additional packages
         run: |
+          Get-Content '.\packages.list'
           Get-Content '.\packages.list' | ForEach-Object {
             if ($_.StartsWith('#') -or ($_.Trim() -eq '')) { continue }
             $package = $_
