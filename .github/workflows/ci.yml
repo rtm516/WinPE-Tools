@@ -33,7 +33,12 @@ jobs:
         run: Dism /Mount-Image /ImageFile:"C:\WinPE_amd64\media\sources\boot.wim" /index:1 /MountDir:"C:\WinPE_amd64\mount"
 
       - name: Add additional packages
-        run: Get-Content '.\packages.list' | ForEach-Object { if ($_.StartsWith("#") -or ($_.Trim() -eq '')) { continue } Dism /Add-Package /Image:"C:\WinPE_amd64\mount" /PackagePath:"C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\$_" }
+        run: |
+          ForEach ($package in Get-Content '.\packages.list') {
+            if ($package.StartsWith('#') -or ($package.Trim() -eq '')) { continue }
+            Write-Host 'Adding package $package'
+            Dism /Add-Package /Image:'C:\WinPE_amd64\mount' /PackagePath:'C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\$package'
+          }
 
       - name: Copy in the modifications
         run: Copy-Item -Path $env:GITHUB_WORKSPACE\mount\* -Destination C:\WinPE_amd64\mount -Recurse -Verbose -Force
