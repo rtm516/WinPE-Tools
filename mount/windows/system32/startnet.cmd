@@ -1,3 +1,8 @@
+@echo off
+title WinPE Tools
+
+echo Welcome to the WinPE tools image
+echo Starting...
 wpeinit
 
-echo "Welcome to the test WinPE image"
+powershell
