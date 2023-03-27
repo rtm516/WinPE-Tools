@@ -25,12 +25,20 @@ jobs:
 
       - name: Setup the ENV
         run: cmd /c "C:\Program^ Files^ ^(x86^)\Windows^ Kits\10\Assessment^ and^ Deployment^ Kit\Deployment^ Tools\DandISetEnv.bat && set" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-#         run: cmd /c "C:\Program^ Files^ ^(x86^)\Windows^ Kits\10\Assessment^ and^ Deployment^ Kit\Deployment^ Tools\DandISetEnv.bat && cmd /c echo %NewPath%" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Create the WinPE directory
         run: copype amd64 C:\WinPE_amd64
+
+      - name: Mount the WinPE boot image
+        run: Dism /Mount-Image /ImageFile:"C:\WinPE_amd64\media\sources\boot.wim" /index:1 /MountDir:"C:\WinPE_amd64\mount"
+
+      - name: Copy in the modifications
+        run: Copy-Item -Path .\mount -Destination C:\WinPE_amd64\mount -Recurse
+
+      - name: Unmount the WinPE boot image
+        run: Dism /Unmount-Image /MountDir:"C:\WinPE_amd64\mount" /commit
         
-      - name: Create the WinPE directory
+      - name: Create the WinPE iso
         run: MakeWinPEMedia /ISO C:\WinPE_amd64 C:\WinPE_amd64\WinPE_amd64.iso
         
       - name: Upload a Build Artifact
