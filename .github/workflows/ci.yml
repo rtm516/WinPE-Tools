@@ -34,12 +34,13 @@ jobs:
 
       - name: Add additional packages
         run: |
-          Get-Content '.\packages.list'
+          {
           Get-Content '.\packages.list' | ForEach-Object {
             if ($_.StartsWith('#') -or ($_.Trim() -eq '')) { continue }
             $package = $_
             Write-Host 'Adding package $package'
             Dism /Add-Package /Image:'C:\WinPE_amd64\mount' /PackagePath:'C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\$package'
+          }
           }
 
       - name: Copy in the modifications
