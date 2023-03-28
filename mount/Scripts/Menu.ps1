@@ -2,7 +2,9 @@ Set-Location -Path (Split-Path $MyInvocation.MyCommand.Path)
 Import-Module -Name .\Utils.ps1 -Force
 
 Function Main-Menu {
-	$folders = Get-Childitem -Directory | ForEach-Object { "&" + $_.Name }
+	[System.Console]::Clear()
+
+	$folders = [string[]](Get-Childitem -Directory | ForEach-Object { "&" + $_.Name })
 	$options = ($folders + @("&Shell", "&Exit"))
 
 	$option = Show-Menu -Title "WinPE Tools menu" -Message "Please select a category/tool!" -Options $options
