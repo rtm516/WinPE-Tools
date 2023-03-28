@@ -32,6 +32,9 @@ jobs:
       - name: Mount the WinPE boot image
         run: Dism /Mount-Image /ImageFile:"C:\WinPE_amd64\media\sources\boot.wim" /index:1 /MountDir:"C:\WinPE_amd64\mount"
 
+      - name: Set the keyboard layout to English (United Kingdom) # See https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs
+        run: Dism /Image:"C:\WinPE_amd64\mount" /Set-InputLocale:0809:00000809
+
       - name: Add additional packages
         run: |
           ForEach ($package in Get-Content '.\packages.list') {
