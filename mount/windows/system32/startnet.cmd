@@ -5,4 +5,4 @@ echo Welcome to the WinPE tools image
 echo Starting...
 wpeinit
 
-powershell
+powershell -NoLogo
