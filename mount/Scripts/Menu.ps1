@@ -1,4 +1,7 @@
+# Change the working directory to the script directory
 Set-Location -Path (Split-Path $MyInvocation.MyCommand.Path)
+
+# Load the Utils script
 Import-Module -Name .\Utils.ps1 -Force
 
 Function Main-Menu {
