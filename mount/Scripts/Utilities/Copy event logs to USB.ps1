@@ -12,7 +12,7 @@ ForEach ($drive in Get-Volume) {
 		Write-Output "Copying logs to ${drive}:\Logs\..."
 
 		# Copy the event logs to the USB drive
-		Copy-Item -Path "$env:OSDRIVE\Windows\System32\winevt\Logs" -Destination "${drive}:\Logs" -Recurse -Force
+		Copy-Item -Path "$($env:OSDRIVE):\Windows\System32\winevt\Logs" -Destination "${drive}:\Logs" -Recurse -Force
 	} -Arguments $drive))
 }
 

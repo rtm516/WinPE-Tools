@@ -1,7 +1,7 @@
 @echo off
 title WinPE Tools
 
-echo Welcome to the WinPE tools image
+echo Welcome to the WinPE Tools image
 echo Starting...
 wpeinit
 
