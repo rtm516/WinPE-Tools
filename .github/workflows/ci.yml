@@ -43,6 +43,9 @@ jobs:
             Dism /Add-Package /Image:"C:\WinPE_amd64\mount" /PackagePath:"C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\WinPE_OCs\$package"
           }
 
+      - name: Install additional PS modules
+        run: .\Download-PSModules.ps1
+
       - name: Copy in the modifications
         run: Copy-Item -Path $env:GITHUB_WORKSPACE\mount\* -Destination C:\WinPE_amd64\mount -Recurse -Verbose -Force
 
